@@ -12,9 +12,9 @@ function TabsFooter() {
         showLabels
         sx={{ span: { color: 'black' }, svg: { fontSize: 32, color: "#984B43" } }}
       >
-        <BottomNavigationAction onClick={() => navigate('/copa/jogos-do-dia')} label="Jogos do Dia" icon={<SportsSoccer />} />
-        <BottomNavigationAction onClick={() => navigate('/copa/calendario')} label="Calendário" icon={<CalendarMonth />} />
-        <BottomNavigationAction onClick={() => navigate('/copa/grupos')} label="Grupos" icon={<FormatListBulleted />} />
+        <BottomNavigationAction onClick={() => navigate('/copainfo/jogos-do-dia')} label="Jogos do Dia" icon={<SportsSoccer />} />
+        <BottomNavigationAction onClick={() => navigate('/copainfo/calendario')} label="Calendário" icon={<CalendarMonth />} />
+        <BottomNavigationAction onClick={() => navigate('/copainfo/grupos')} label="Grupos" icon={<FormatListBulleted />} />
       </BottomNavigation>
     </Paper>
   )

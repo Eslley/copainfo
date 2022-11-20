@@ -14,10 +14,10 @@ function App() {
 
       <Container sx={{ mt: '4em', pb: '1em' }}>
         <Routes>
-          <Route path='/copa' element={<Home />} />
-          <Route path='/copa/jogos-do-dia' element={<DaysGames />} />
-          <Route path='/copa/calendario' element={<Calendar />} />
-          <Route path='/copa/grupos' element={<Groups />} />
+          <Route path='/copainfo' element={<Home />} />
+          <Route path='/copainfo/jogos-do-dia' element={<DaysGames />} />
+          <Route path='/copainfo/calendario' element={<Calendar />} />
+          <Route path='/copainfo/grupos' element={<Groups />} />
         </Routes>
       </Container>
 

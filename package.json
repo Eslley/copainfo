@@ -1,7 +1,7 @@
 {
   "name": "copa",
   "version": "0.1.0",
-  "homepage": "https://eslley.github.io/copa/",
+  "homepage": "https://eslley.github.io/copainfo/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
