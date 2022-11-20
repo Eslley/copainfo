@@ -1,3 +1,12 @@
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  background: #18121E;
+  background: linear-gradient(22deg, #233237 10%, #18121E 90%);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
