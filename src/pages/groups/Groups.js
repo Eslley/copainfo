@@ -31,7 +31,7 @@ function Groups() {
         stopLoader()
 
         console.log(err)
-        showAlert('', 'Erro ao recuperar grupos, tente mais tarde!', 'error', 5000)
+        showAlert('', 'Erro ao recuperar grupos, tente novamente após 1 minuto!', 'error', 5000)
       })
   }, [])
 
