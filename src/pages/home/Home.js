@@ -1,15 +1,7 @@
-import { useEffect } from 'react'
 import logo from '../../assets/logo.png'
 import styles from './Home.module.css'
-import matchServices from '../../providers/http-services/match'
 
 function Home() {
-
-    // useEffect(() => {
-    //     matchServices.allMatches()
-    //         .then(res => console.log(res))
-    //         .catch(err => console.log(err))
-    // }, [])
 
     return (
         <div className={styles.home_container}>
