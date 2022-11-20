@@ -8,6 +8,7 @@ import Calendar from "./pages/calendar/Calendar";
 import DaysGames from "./pages/days-games/DaysGames";
 import Groups from "./pages/groups/Groups";
 import Home from "./pages/home/Home";
+import MinhaSelecao from "./pages/minha-selecao/MinhaSelecao";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <AlertMessageProvider>
             <Routes>
               <Route path='/copainfo' element={<Home />} />
+              <Route path='/copainfo/favorita' element={<MinhaSelecao />} />
               <Route path='/copainfo/jogos-do-dia' element={<DaysGames />} />
               <Route path='/copainfo/calendario' element={<Calendar />} />
               <Route path='/copainfo/grupos' element={<Groups />} />
