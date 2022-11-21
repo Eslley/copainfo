@@ -1,19 +1,56 @@
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useEffect, useState } from 'react'
-import { useAlertMessage } from '../../components/alert/AlertMessageProvider'
 import EmptyState from '../../components/layout/empty/EmptyState'
-import { useLoader } from '../../components/loading/LoadingProvider'
 import teamServices from '../../providers/http-services/team'
 import flags from '../../providers/utils/flags'
+
+const compareCallBack = (team1, team2) => {
+  if (team1.group_points < team2.group_points) 
+    return 1
+
+  if (team1.group_points > team2.group_points) 
+    return -1
+
+  // if the teams have the same points number, use the goal balance (goals_for - goals_against) as criteria
+  if (team1.group_points === team2.group_points) {
+    const saldoGTeam1 = team1.goals_for - team1.goals_against
+    const saldoGTeam2 = team2.goals_for - team2.goals_against
+
+    if (saldoGTeam1 <  saldoGTeam2)
+      return 1
+
+    if (saldoGTeam1 >  saldoGTeam2)
+      return -1
+
+    // if also draw in goal balance use most goals scored (goals_for) as criteria
+    if (saldoGTeam1 === saldoGTeam2){
+      if(team1.goals_for < team2.goals_for)
+        return 1
+
+        if(team1.goals_for > team2.goals_for)
+        return -1
+    }
+
+  }
+
+  return 0
+}
 
 var groupsData = []
 
 teamServices.allTeams()
   .then(res => {
-    console.log(res.data.groups)
+    
     if (res.status === 200) {
       groupsData = res.data
+
+      // ordena classificação dos times em cada grupo
+      groupsData.groups.forEach(grupo => {
+        grupo.teams = grupo.teams.sort(compareCallBack)
+      })
+
+      console.log(groupsData.groups)
     }
   })
   .catch(err => {
@@ -24,28 +61,7 @@ function Groups() {
 
   const [groups, setGroups] = useState([])
 
-  const { showAlert } = useAlertMessage()
-
-  const { startLoader, stopLoader } = useLoader()
-
   useEffect(() => {
-    // startLoader()
-
-    // teamServices.allTeams()
-    //   .then(res => {
-    //     console.log(res.data.groups)
-    //     if (res.status === 200) {
-    //       setGroups(res.data.groups)
-    //     }
-
-    //     stopLoader()
-    //   })
-    //   .catch(err => {
-    //     stopLoader()
-
-    //     console.log(err)
-    //     showAlert('', 'Erro ao recuperar grupos, tente novamente após 1 minuto!', 'error', 5000)
-    //   })
     setGroups(groupsData.groups)
   }, [groupsData])
 
@@ -53,9 +69,9 @@ function Groups() {
     <Box mb="5em" pt="1em">
       {!!groups && groups.length > 0 ? (
         groups.map((grupo, indexG) => (
-          <>
+          <div key={indexG}>
             <Typography sx={{ fontSize: 22, color: "white", marginTop: '1em', marginBottom: '1em' }} >Grupo {grupo.letter}</Typography>
-            <TableContainer key={indexG} component={Paper} sx={{ backgroundColor: '#e5e5e5' }}>
+            <TableContainer component={Paper} sx={{ backgroundColor: '#e5e5e5' }}>
               <Table sx={{ minWidth: 400 }} aria-label="a dense table">
                 <TableHead>
                   <TableRow>
@@ -117,7 +133,7 @@ function Groups() {
                 </TableBody>
               </Table>
             </TableContainer>
-          </>
+          </div>
         ))
 
       ) : (
