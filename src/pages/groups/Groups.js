@@ -7,37 +7,51 @@ import { useLoader } from '../../components/loading/LoadingProvider'
 import teamServices from '../../providers/http-services/team'
 import flags from '../../providers/utils/flags'
 
+var groupsData = []
+
+teamServices.allTeams()
+  .then(res => {
+    console.log(res.data.groups)
+    if (res.status === 200) {
+      groupsData = res.data
+    }
+  })
+  .catch(err => {
+    console.log(err)
+  })
+
 function Groups() {
 
   const [groups, setGroups] = useState([])
 
   const { showAlert } = useAlertMessage()
 
-  const { startLoader, stopLoader } = useLoader() 
+  const { startLoader, stopLoader } = useLoader()
 
   useEffect(() => {
-    startLoader()
+    // startLoader()
 
-    teamServices.allTeams()
-      .then(res => {
-        console.log(res.data.groups)
-        if (res.status === 200) {
-          setGroups(res.data.groups)
-        }
+    // teamServices.allTeams()
+    //   .then(res => {
+    //     console.log(res.data.groups)
+    //     if (res.status === 200) {
+    //       setGroups(res.data.groups)
+    //     }
 
-        stopLoader()
-      })
-      .catch(err => {
-        stopLoader()
+    //     stopLoader()
+    //   })
+    //   .catch(err => {
+    //     stopLoader()
 
-        console.log(err)
-        showAlert('', 'Erro ao recuperar grupos, tente novamente após 1 minuto!', 'error', 5000)
-      })
-  }, [])
+    //     console.log(err)
+    //     showAlert('', 'Erro ao recuperar grupos, tente novamente após 1 minuto!', 'error', 5000)
+    //   })
+    setGroups(groupsData.groups)
+  }, [groupsData])
 
   return (
     <Box mb="5em" pt="1em">
-      {groups.length > 0 ? (
+      {!!groups && groups.length > 0 ? (
         groups.map((grupo, indexG) => (
           <>
             <Typography sx={{ fontSize: 22, color: "white", marginTop: '1em', marginBottom: '1em' }} >Grupo {grupo.letter}</Typography>
@@ -56,7 +70,7 @@ function Groups() {
                 </TableHead>
                 <TableBody>
                   {grupo.teams.map((team, indexT) => (
-                    <TableRow key={indexT}>
+                    <TableRow key={indexG + '-' +indexT}>
 
                       <TableCell>
 
@@ -95,7 +109,7 @@ function Groups() {
                       </TableCell>
 
                       <TableCell align="center">
-                        {team.goal_differential}
+                        {team.goals_for - team.goals_against}
                       </TableCell>
 
                     </TableRow>
