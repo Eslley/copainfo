@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/layout/navbar/Navbar";
+import NotFound from "./components/layout/not-found/NotFound";
 import TabsFooter from "./components/layout/tabs/TabsFooter";
 import { useLoader } from "./components/loading/LoadingProvider";
 import Calendar from "./pages/calendar/Calendar";
@@ -33,6 +34,7 @@ function App() {
           <Route path='/copainfo/jogos-do-dia' element={<DaysGames />} />
           <Route path='/copainfo/calendario' element={<Calendar />} />
           <Route path='/copainfo/grupos' element={<Groups />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Container>
       <TabsFooter />
