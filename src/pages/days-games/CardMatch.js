@@ -3,11 +3,12 @@ import moment from "moment"
 import flags from "../../providers/utils/flags"
 
 function CardMatch({ match }) {
+
     return (
         <Card sx={{ background: "#1d272a", color: "#fff", minWidth: 275, mb: "1.5em" }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14, mb: 1.5 }}>
-                    {match.stage_name === "First stage" ? "Fase de Grupos" : ""}
+                    {match.stage_name === "First stage" ? "Grupo " + match.group : ""}
                 </Typography>
 
                 <Grid container alignItems="center" mb="1em">
@@ -39,6 +40,12 @@ function CardMatch({ match }) {
                 {match.status === "in_progress" ?
                     <Typography color="#EAC67A" variant="h6" component="div">
                         Bola Rolando
+                    </Typography> : ""
+                }
+
+                {match.status === "completed" ?
+                    <Typography color="#EAC67A" variant="h6" component="div">
+                        Encerrado
                     </Typography> : ""
                 }
 

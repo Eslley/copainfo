@@ -8,6 +8,7 @@ import TabPanel from "./TabPanel"
 import moment from "moment/moment"
 import CardMatch from "./CardMatch"
 import EmptyState from '../../components/layout/empty/EmptyState'
+import findGroup from "../../providers/utils/groups"
 
 var matchesData = []
 
@@ -19,6 +20,13 @@ matchService.matchesByDate(yesterday.format('YYYY-MM-DD'), tomorrow.format('YYYY
   .then(res => {
     if (res.status === 200) {
       matchesData = res.data
+      matchesData.forEach(match => {
+        if (match.stage_name === "First stage") {
+          const matchGroup = findGroup(match.home_team.country).group
+
+          match.group = matchGroup
+        }
+      });
     }
   })
   .catch(err => {
@@ -49,13 +57,13 @@ function DaysGames() {
     aux = matchesData.filter(match => {
       return moment(match.datetime).format('YYYY-MM-DD') === yesterday.format('YYYY-MM-DD')
     })
-    
+
     setMatchesYesterday(aux)
 
     aux = matchesData.filter(match => {
       return moment(match.datetime).format('YYYY-MM-DD') === tomorrow.format('YYYY-MM-DD')
     })
-    
+
     setMatchesTomorrow(aux)
 
     stopLoader()
