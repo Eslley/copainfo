@@ -1,4 +1,4 @@
-const Groups = [
+export const Groups = [
     {
         group: "A",
         teams: ["SEN", "NED", "QAT", "ECU"]

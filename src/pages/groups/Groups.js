@@ -37,7 +37,7 @@ const compareCallBack = (team1, team2) => {
   return 0
 }
 
-var groupsData = []
+export var groupsData = []
 
 teamServices.allTeams()
   .then(res => {

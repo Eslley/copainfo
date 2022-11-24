@@ -2,7 +2,7 @@ import { Card, CardContent, Grid, Typography } from "@mui/material"
 import moment from "moment"
 import flags from "../../providers/utils/flags"
 
-function CardMatch({ match }) {
+function CardMatch({ match, showDate }) {
 
     return (
         <Card sx={{ background: "#1d272a", color: "#fff", minWidth: 275, mb: "1.5em" }}>
@@ -29,9 +29,14 @@ function CardMatch({ match }) {
                     </Grid>
                 </Grid>
 
-                <Typography>
-                    {moment(match.datetime).format('H:mm')}
-                </Typography>
+                {showDate === true ?
+                    <Typography>
+                        {moment(match.datetime).format('DD/MM/YYYY H:mm')}
+                    </Typography> :
+                    <Typography>
+                        {moment(match.datetime).format('H:mm')}
+                    </Typography>
+                }
 
                 <Typography variant="body2">
                     {match.venue}
