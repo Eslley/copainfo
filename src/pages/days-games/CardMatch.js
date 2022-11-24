@@ -1,6 +1,9 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material"
 import moment from "moment"
+import 'moment/locale/pt-br';
 import flags from "../../providers/utils/flags"
+
+moment.locale("pt-br")
 
 function CardMatch({ match, showDate }) {
 
@@ -31,7 +34,7 @@ function CardMatch({ match, showDate }) {
 
                 {showDate === true ?
                     <Typography>
-                        {moment(match.datetime).format('DD/MM/YYYY H:mm')}
+                        {moment(match.datetime).calendar()}
                     </Typography> :
                     <Typography>
                         {moment(match.datetime).format('H:mm')}
