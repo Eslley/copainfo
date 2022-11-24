@@ -25,20 +25,22 @@ function App() {
   }, [])
 
   return (
-    <Router>
+    <>
       <Navbar />
       <Container sx={{ mt: '4em', pb: '1em' }}>
         <Routes>
-          <Route path='/copainfo' element={<Home />} />
-          <Route path='/copainfo/favorita' element={<MinhaSelecao />} />
-          <Route path='/copainfo/jogos-do-dia' element={<DaysGames />} />
-          <Route path='/copainfo/calendario' element={<Calendar />} />
-          <Route path='/copainfo/grupos' element={<Groups />} />
-          <Route path='*' element={<NotFound />} />
+          <Route path='/'>
+            <Route path='' element={<Home />} />
+            <Route path='/favorita' element={<MinhaSelecao />} />
+            <Route path='/jogos-do-dia' element={<DaysGames />} />
+            <Route path='/calendario' element={<Calendar />} />
+            <Route path='/grupos' element={<Groups />} />
+            <Route path='/*' element={<NotFound />} />
+          </Route>
         </Routes>
       </Container>
       <TabsFooter />
-    </Router>
+    </>
   )
 }
 

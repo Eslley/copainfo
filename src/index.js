@@ -8,13 +8,16 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import AlertMessageProvider from "./components/alert/AlertMessageProvider";
 import LoadingProvider, { useLoader } from "./components/loading/LoadingProvider";
+import { HashRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <LoadingProvider>
       <AlertMessageProvider>
-        <App />
+        <HashRouter>
+          <App />
+        </HashRouter>
       </AlertMessageProvider>
     </LoadingProvider>
   </React.StrictMode>

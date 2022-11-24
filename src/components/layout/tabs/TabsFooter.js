@@ -14,10 +14,10 @@ function TabsFooter() {
         showLabels
         sx={{ span: { color: 'black' }, svg: { fontSize: 32, color: "#984B43" } }}
       >
-        <BottomNavigationAction sx={{ backgroundColor: location.pathname === '/copainfo/favorita' ? '#b6c6cb' : '' }} onClick={() => navigate('/copainfo/favorita')} label="Favorita" icon={<Favorite />} />
-        <BottomNavigationAction sx={{ backgroundColor: location.pathname === '/copainfo/jogos-do-dia' ? '#b6c6cb' : '' }} onClick={() => navigate('/copainfo/jogos-do-dia')} label="Jogos" icon={<SportsSoccer />} />
-        <BottomNavigationAction sx={{ backgroundColor: location.pathname === '/copainfo/calendario' ? '#b6c6cb' : '' }} onClick={() => navigate('/copainfo/calendario')} label="Calendário" icon={<CalendarMonth />} />
-        <BottomNavigationAction sx={{ backgroundColor: location.pathname === '/copainfo/grupos' ? '#b6c6cb' : '' }} onClick={() => navigate('/copainfo/grupos')} label="Grupos" icon={<FormatListBulleted />} />
+        <BottomNavigationAction sx={{ backgroundColor: location.pathname === '/favorita' ? '#b6c6cb' : '' }} onClick={() => navigate('/favorita')} label="Favorita" icon={<Favorite />} />
+        <BottomNavigationAction sx={{ backgroundColor: location.pathname === '/jogos-do-dia' ? '#b6c6cb' : '' }} onClick={() => navigate('/jogos-do-dia')} label="Jogos" icon={<SportsSoccer />} />
+        <BottomNavigationAction sx={{ backgroundColor: location.pathname === '/calendario' ? '#b6c6cb' : '' }} onClick={() => navigate('/calendario')} label="Calendário" icon={<CalendarMonth />} />
+        <BottomNavigationAction sx={{ backgroundColor: location.pathname === '/grupos' ? '#b6c6cb' : '' }} onClick={() => navigate('/grupos')} label="Grupos" icon={<FormatListBulleted />} />
       </BottomNavigation>
     </Paper>
   )

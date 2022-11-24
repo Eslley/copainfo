@@ -6,7 +6,7 @@ function Navbar() {
     <AppBar sx={{ backgroundColor: '#233237' }}>
       <Toolbar>
         <Typography variant="h6" component="div">
-          <Link style={{ textDecoration: 'none', color: '#fff' }} to="/copainfo">
+          <Link style={{ textDecoration: 'none', color: '#fff' }} to="/">
             CopaInfo 2022
           </Link>
         </Typography>
