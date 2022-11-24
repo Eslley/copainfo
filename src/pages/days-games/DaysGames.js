@@ -4,7 +4,7 @@ import { useAlertMessage } from "../../components/alert/AlertMessageProvider"
 import { useLoader } from "../../components/loading/LoadingProvider"
 import matchService from "../../providers/http-services/match"
 import SwipeableViews from 'react-swipeable-views';
-import TabPanel from "./TabPanel"
+import TabPanel from "../../components/layout/tabs/TabPanel"
 import moment from "moment/moment"
 import CardMatch from "./CardMatch"
 import EmptyState from '../../components/layout/empty/EmptyState'
