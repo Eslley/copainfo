@@ -121,7 +121,7 @@ function MinhaSelecao() {
             ) : null}
         </>
       ) :
-        <Box mt="30vh" display="flex" flexDirection="column" alignItems="center">
+        <Box mt="25vh" display="flex" flexDirection="column" alignItems="center">
           <Typography variant="h6" color="#fff" mb="1em">
             Escolha a sua seleção favorita:
           </Typography>
