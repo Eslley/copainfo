@@ -2,6 +2,10 @@ import { http } from './http'
 
 export default {
 
+    allMatches:() => {
+        return http.get('matches/')
+    },
+
     matchesToday:() => {
         return http.get('matches/today')
     },
