@@ -6,7 +6,7 @@ Para utilizar a aplicação acesse [CopaInfo 2022](https://eslley.github.io/copa
 
 * Aplicação single page para acompanhar jogos, classificação, e seleção favorita na Copa do Mundo 2022
 
-**Funcinalidades**
+**Funcionalidades**
 
 * Escolher seleção favorita
 * Visualizar jogos diários
@@ -28,4 +28,5 @@ Para utilizar a aplicação acesse [CopaInfo 2022](https://eslley.github.io/copa
 
 <p align="center">
     <img src="https://imgur.com/MmQIWIQ.png" width="35%">
+    <img src="https://imgur.com/gf632wr.png" width="35%">
 </p>
