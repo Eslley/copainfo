@@ -3,7 +3,7 @@ import { Box } from "@mui/system"
 import findGroup, { Groups } from "../../providers/utils/groups";
 import flags from '../../providers/utils/flags'
 import { useEffect, useState } from "react";
-import { Favorite } from "@mui/icons-material";
+import { Favorite, FormatListBulleted, SportsSoccer } from "@mui/icons-material";
 import { useAlertMessage } from "../../components/alert/AlertMessageProvider";
 import matchServices from "../../providers/http-services/match"
 import CardMatch from "../days-games/CardMatch";
@@ -101,18 +101,24 @@ function MinhaSelecao() {
   }
 
   return (
-    <Box pt="2vh" mb="4em" textAlign="center">
+    <Box pt="1vh" mb="4em" textAlign="center">
       {favoriteTeam != undefined ? (
         <>
-          <Typography textAlign="center" variant="h6" color="#fff" mb="1em">
-            Grupo:
-          </Typography>
+          <Box color="#fff" bgcolor="#984B43" borderRadius="5px" p="0.3em" display="flex" justifyContent="center" alignItems="center" columnGap="0.5em" mt="2em" mb="1em">
+            <FormatListBulleted />
+            <Typography variant="h6" >
+              Grupo
+            </Typography>
+          </Box>
 
           {group.hasOwnProperty("teams") && <TableGroup grupo={group} indexG={0} />}
 
-          <Typography mt="2em" textAlign="center" variant="h6" color="#fff" mb="1em">
-            Partidas:
-          </Typography>
+          <Box color="#fff" bgcolor="#984B43" borderRadius="5px" p="0.3em" display="flex" justifyContent="center" alignItems="center" columnGap="0.5em" mt="2em" mb="1em">
+            <SportsSoccer />
+            <Typography variant="h6" >
+              Partidas
+            </Typography>
+          </Box>
 
           {!!matches && matches.length > 0 ?
             matches.map((match, index) => (
