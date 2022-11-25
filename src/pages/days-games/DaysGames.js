@@ -92,7 +92,7 @@ function DaysGames() {
         onChange={handleChange}
         sx={{ '& .MuiTabs-indicator': { backgroundColor: "#984B43" } }}
         variant="fullWidth"
-        textColor="primary.light"
+        textColor="inherit"
       >
         <Tab label="Ontem" {...a11yProps(0)} />
         <Tab label="Hoje" {...a11yProps(0)} />
