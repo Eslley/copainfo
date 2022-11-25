@@ -2,6 +2,7 @@ import { Card, CardContent, Grid, Typography } from "@mui/material"
 import moment from "moment"
 import 'moment/locale/pt-br';
 import flags from "../../providers/utils/flags"
+import styles from "./CardMatch.module.css"
 
 moment.locale("pt-br")
 
@@ -45,10 +46,14 @@ function CardMatch({ match, showDate }) {
                     {match.venue}
                 </Typography>
 
-                {match.status === "in_progress" ?
-                    <Typography color="#EAC67A" variant="h6" component="div">
-                        Bola Rolando
-                    </Typography> : ""
+                {match.status === "in_progress" ? (
+                    <>
+                        <Typography color="#EAC67A" variant="h6" component="div">
+                            Bola Rolando
+                        </Typography>
+                        <div className={styles.liveAnimation}></div>
+                    </> ) : ""
+
                 }
 
                 {match.status === "completed" ?

@@ -1,0 +1,18 @@
+.liveAnimation {
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-name: liveupdateanimation;
+    background-color: #EAC67A;
+    height: 2px;
+    margin: auto;
+    opacity: 1;
+    position: relative;
+    transition-timing-function: cubic-bezier(0.5,0,0.5,1);
+    width: 8px;
+}
+
+@keyframes liveupdateanimation {
+    50% {
+        transform: scaleX(7.5);
+    }
+}
