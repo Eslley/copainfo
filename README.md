@@ -22,11 +22,5 @@ Para utilizar a aplicação acesse [CopaInfo 2022](https://eslley.github.io/copa
 **Snapshot da aplicação**
 
 <p align="center">
-    <img src="https://imgur.com/Hx5IoMv.png" width="35%">
-    <img src="https://imgur.com/H9rViq8.png" width="35%">
-</p>
-
-<p align="center">
-    <img src="https://imgur.com/MmQIWIQ.png" width="35%">
-    <img src="https://imgur.com/gf632wr.png" width="35%">
+    <img src="https://imgur.com/Mbupgll.gif" width="35%">
 </p>
