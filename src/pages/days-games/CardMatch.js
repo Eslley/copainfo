@@ -49,7 +49,7 @@ function CardMatch({ match, showDate }) {
                 {match.status === "in_progress" ? (
                     <>
                         <Typography color="#EAC67A" variant="h6" component="div">
-                            Bola Rolando
+                            {match.time ?? "Bola Rolando"}
                         </Typography>
                         <div className={styles.liveAnimation}></div>
                     </> ) : ""

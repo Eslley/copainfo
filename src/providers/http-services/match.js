@@ -14,6 +14,10 @@ export default {
         return http.get('matches/tomorrow/')
     },
 
+    matchesYesterday:() => {
+        return http.get('matches/yesterday/')
+    },
+
     matchesByDate:(start, end) => {
         return http.get(`matches?start_date=${start}&end_date=${end}`)
     },

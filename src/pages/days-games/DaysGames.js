@@ -1,37 +1,22 @@
-import { AppBar, Box, Tab, Tabs } from "@mui/material"
+import { Box, Tab, Tabs } from "@mui/material"
 import { useEffect, useState } from "react"
-import { useAlertMessage } from "../../components/alert/AlertMessageProvider"
 import { useLoader } from "../../components/loading/LoadingProvider"
 import matchService from "../../providers/http-services/match"
 import SwipeableViews from 'react-swipeable-views';
 import TabPanel from "../../components/layout/tabs/TabPanel"
-import moment from "moment/moment"
 import CardMatch from "./CardMatch"
 import EmptyState from '../../components/layout/empty/EmptyState'
 import findGroup from "../../providers/utils/groups"
 
-var matchesData = []
+function setGroups(matches) {
+  matches.forEach(match => {
+    if (match.stage_name === "First stage") {
+      const matchGroup = findGroup(match.home_team.country).group
 
-const today = moment()
-const yesterday = moment().subtract(1, 'days')
-const tomorrow = moment().add(1, 'days')
-
-matchService.matchesByDate(yesterday.format('YYYY-MM-DD'), tomorrow.format('YYYY-MM-DD'))
-  .then(res => {
-    if (res.status === 200) {
-      matchesData = res.data
-      matchesData.forEach(match => {
-        if (match.stage_name === "First stage") {
-          const matchGroup = findGroup(match.home_team.country).group
-
-          match.group = matchGroup
-        }
-      });
+      match.group = matchGroup
     }
-  })
-  .catch(err => {
-    console.log(err)
-  })
+  });
+}
 
 function DaysGames() {
 
@@ -41,34 +26,49 @@ function DaysGames() {
 
   const [tabValue, setTabValue] = useState(1)
 
-  const { showAlert } = useAlertMessage()
-
   const { startLoader, stopLoader } = useLoader()
 
   useEffect(() => {
     startLoader()
 
-    let aux = matchesData.filter(match => {
-      return moment(match.datetime).format('YYYY-MM-DD') === today.format('YYYY-MM-DD')
-    })
+    matchService.matchesToday()
+      .then(res => {
+        if (res.status === 200) {
+          setGroups(res.data)
+          setMatchesToday(res.data)
+        }
 
-    setMatchesToday(aux)
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
-    aux = matchesData.filter(match => {
-      return moment(match.datetime).format('YYYY-MM-DD') === yesterday.format('YYYY-MM-DD')
-    })
+    matchService.matchesYesterday()
+      .then(res => {
+        if (res.status === 200) {
+          setGroups(res.data)
+          setMatchesYesterday(res.data)
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
-    setMatchesYesterday(aux)
+    matchService.matchesYesterday()
+      .then(res => {
 
-    aux = matchesData.filter(match => {
-      return moment(match.datetime).format('YYYY-MM-DD') === tomorrow.format('YYYY-MM-DD')
-    })
+        if (res.status === 200) {
+          setGroups(res.data)
+          setMatchesTomorrow(res.data)
+        }
 
-    setMatchesTomorrow(aux)
+        stopLoader()
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
-    stopLoader()
-
-  }, [matchesData])
+  }, [])
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue)
