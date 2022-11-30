@@ -54,7 +54,7 @@ function DaysGames() {
         console.log(err)
       })
 
-    matchService.matchesYesterday()
+    matchService.matchesTomorrow()
       .then(res => {
 
         if (res.status === 200) {
