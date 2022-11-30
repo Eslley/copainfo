@@ -11,7 +11,7 @@ function FirstStage({ firstStage }) {
             {Object.keys(firstStage).length !== 0 ? (
 
                 Object.keys(firstStage).map((date, indexD) => (
-                    <div key={indexD}>
+                    <div id={moment(date).format("MM-DD")} tabIndex={indexD} key={indexD}>
 
                         <Box bgcolor="#984B43" borderRadius="5px" p="0.3em" display="flex" justifyContent="center" alignItems="center" columnGap="0.5em" mt="2em" mb="1em">
                             <Event />

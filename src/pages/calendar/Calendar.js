@@ -9,6 +9,8 @@ import SwipeableViews from "react-swipeable-views"
 
 import findGroup from "../../providers/utils/groups"
 import FirstStage from "./FirstStage"
+import FabFilter from "./FabFilter"
+import ModalSelectDate from "./ModalSelectDate"
 
 function a11yProps(index) {
   return {
@@ -31,6 +33,12 @@ function Calendar() {
   const [calendar, setCalendar] = useState(defaultCalendar)
   const [tabValue, setTabValue] = useState(0)
   const { startLoader, stopLoader } = useLoader()
+
+  const [ dateFilter, setDateFilter ] = useState('');
+
+  const handleChangeSelect = (event) => {
+    setDateFilter(event.target.value);
+  }
 
   useEffect(() => {
     startLoader()
@@ -126,6 +134,11 @@ function Calendar() {
         </TabPanel>
 
       </SwipeableViews>
+
+      <FabFilter tabValue={tabValue} setDateFilter={setDateFilter} />
+
+      <ModalSelectDate open={dateFilter} setOpen={setDateFilter} dates={Object.keys(calendar["First stage"])} />
+
     </Box>
   )
 }
