@@ -135,7 +135,7 @@ function Calendar() {
 
       </SwipeableViews>
 
-      <FabFilter tabValue={tabValue} setDateFilter={setDateFilter} />
+      {Object.keys(calendar["First stage"]).length > 0 && <FabFilter tabValue={tabValue} setDateFilter={setDateFilter} />}
 
       <ModalSelectDate open={dateFilter} setOpen={setDateFilter} dates={Object.keys(calendar["First stage"])} />
 
