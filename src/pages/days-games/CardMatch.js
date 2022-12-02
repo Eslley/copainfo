@@ -3,6 +3,7 @@ import moment from "moment"
 import 'moment/locale/pt-br';
 import flags from "../../providers/utils/flags"
 import styles from "./CardMatch.module.css"
+import noFlag from "../../assets/no_flag.png"
 
 moment.locale("pt-br")
 
@@ -13,12 +14,26 @@ function CardMatch({ match, showDate }) {
             <CardContent>
                 <Typography sx={{ fontSize: 14, mb: 1.5 }}>
                     {match.stage_name === "First stage" ? "Grupo " + match.group : ""}
+
+                    {/* (match.id - FIRST_ID_OF_STAGE) The API doesn't return the title of the match but the id of all matches are ordered */}
+                    {match.stage_name === "Round of 16" ? "Oitavas " + (match.id - 48) : ""}
+
+                    {match.stage_name === "Quarter-final" ? "Quartas " + (match.id - 56) : ""}
+
+                    {match.stage_name === "Semi-final" ? "Semifinal " + (match.id - 60) : ""}
+
+                    {match.stage_name === "Play-off for third place" ? "3° lugar" : ""}
+
+                    {match.stage_name === "Final" ? "Final" : ""}
                 </Typography>
 
                 <Grid container alignItems="center" mb="1em">
                     <Grid container item xs={5} alignItems="center" justifyContent="flex-end" gap="0.4em">
                         {match.home_team.country}
-                        <img src={flags[match.home_team.country]} width="27" height="20" />
+                        {match.home_team.name === "To Be Determined" ?
+                            <img src={noFlag} width="30" height="30" /> :
+                            <img src={flags[match.home_team.country]} width="27" height="20" />
+                        }
                     </Grid>
 
                     <Grid item xs={2}>
@@ -28,7 +43,10 @@ function CardMatch({ match, showDate }) {
                     </Grid>
 
                     <Grid container item xs={5} alignItems="center" gap="0.4em">
-                        <img src={flags[match.away_team.country]} width="27" height="20" />
+                        {match.home_team.name === "To Be Determined" ?
+                            <img src={noFlag} width="30" height="30" /> :
+                            <img src={flags[match.away_team.country]} width="27" height="20" />
+                        }
                         {match.away_team.country}
                     </Grid>
                 </Grid>
@@ -52,8 +70,7 @@ function CardMatch({ match, showDate }) {
                             {match.time ?? "Bola Rolando"}
                         </Typography>
                         <div className={styles.liveAnimation}></div>
-                    </> ) : ""
-
+                    </>) : ""
                 }
 
                 {match.status === "completed" ?

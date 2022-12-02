@@ -11,6 +11,7 @@ import findGroup from "../../providers/utils/groups"
 import FirstStage from "./FirstStage"
 import FabFilter from "./FabFilter"
 import ModalSelectDate from "./ModalSelectDate"
+import Eighths from "./Eighths"
 
 function a11yProps(index) {
   return {
@@ -34,7 +35,7 @@ function Calendar() {
   const [tabValue, setTabValue] = useState(0)
   const { startLoader, stopLoader } = useLoader()
 
-  const [ dateFilter, setDateFilter ] = useState('');
+  const [ dateFilter, setDateFilter ] = useState(false);
 
   const handleChangeSelect = (event) => {
     setDateFilter(event.target.value);
@@ -48,9 +49,9 @@ function Calendar() {
         if (res.status === 200) {
           let data = res.data
           data.forEach(match => {
-            if (match.stage_name === "First stage") {
-              match.date = moment(match.datetime).format("YYYY-MM-DD")
+            match.date = moment(match.datetime).format("YYYY-MM-DD")
 
+            if (match.stage_name === "First stage") {
               const matchGroup = findGroup(match.home_team.country).group
 
               match.group = matchGroup
@@ -60,8 +61,13 @@ function Calendar() {
           // group the matches by stage
           let calendar = groupBy(data, "stage_name")
 
-          // group by date in first stage
+          // group by date
           calendar["First stage"] = groupBy(calendar["First stage"], "date")
+          calendar["Round of 16"] = groupBy(calendar["Round of 16"], "date")
+          calendar["Quarter-final"] = groupBy(calendar["Quarter-final"], "date")
+          calendar["Semi-final"] = groupBy(calendar["Semi-final"], "date")
+          calendar["Play-off for third place"] = groupBy(calendar["Play-off for third place"], "date")
+          calendar["Final"] = groupBy(calendar["Final"], "date")
 
           console.log(calendar)
           setCalendar(calendar)
@@ -118,7 +124,7 @@ function Calendar() {
         </TabPanel>
 
         <TabPanel value={tabValue} index={1}>
-          Oitavas
+          <Eighths eighths={calendar["Round of 16"]} />
         </TabPanel>
 
         <TabPanel value={tabValue} index={2}>
@@ -135,6 +141,7 @@ function Calendar() {
 
       </SwipeableViews>
 
+      {/* Keep this component out of SwipeableViews, there's a conflict between the properties transform: translate and position: fixed */}
       {Object.keys(calendar["First stage"]).length > 0 && <FabFilter tabValue={tabValue} setDateFilter={setDateFilter} />}
 
       <ModalSelectDate open={dateFilter} setOpen={setDateFilter} dates={Object.keys(calendar["First stage"])} />
