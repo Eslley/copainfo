@@ -21,7 +21,7 @@ function FirstStage({ firstStage }) {
                         </Box>
 
                         {firstStage[date].map((match, indexM) => (
-                            <CardMatch key={indexD + "" + indexM} showDate match={match} />
+                            <CardMatch key={indexD + "" + indexM} match={match} />
                         ))}
                     </div>
                 ))
