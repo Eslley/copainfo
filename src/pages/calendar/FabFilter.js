@@ -6,7 +6,8 @@ function FabFilter({ tabValue, setDateFilter }) {
 
     const goToday = () => {
         const today = moment().format("MM-DD")
-        document.getElementById(today).focus()
+        const elem = document.getElementById(today)
+        if(!!elem) elem.focus()
     }
 
     return (
@@ -23,6 +24,7 @@ function FabFilter({ tabValue, setDateFilter }) {
                 onClick={() => setDateFilter(true)}
             />
             <SpeedDialAction
+                disabled={moment().isAfter(moment('2022-12-02'))}
                 key="1"
                 icon={<Today />}
                 tooltipTitle="Ir para hoje"
