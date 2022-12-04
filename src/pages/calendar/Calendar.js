@@ -35,14 +35,12 @@ function Calendar() {
   const [tabValue, setTabValue] = useState(0)
   const { startLoader, stopLoader } = useLoader()
 
-  const [ dateFilter, setDateFilter ] = useState(false);
-
-  const handleChangeSelect = (event) => {
-    setDateFilter(event.target.value);
-  }
+  const [dateFilter, setDateFilter] = useState(false);
 
   useEffect(() => {
     startLoader()
+
+    changeTabByStage()
 
     matchServices.allMatches()
       .then(res => {
@@ -80,6 +78,23 @@ function Calendar() {
       })
   }, [])
 
+  function changeTabByStage() {
+    let today = moment()
+
+    if (today.isBetween(moment('2022-11-20'), moment('2022-12-02'))) // First Stage
+      setTabValue(0)
+    else if (today.isBetween(moment('2022-12-03'), moment('2022-12-06'))) // Round of 16
+      setTabValue(1)
+    else if (today.isBetween(moment('2022-12-09'), moment('2022-12-10'))) // Quarters
+      setTabValue(2)
+    else if (today.isBetween(moment('2022-12-13'), moment('2022-12-14'))) // Semi
+      setTabValue(3)
+    else if (today.isSame(moment('2022-12-17'))) // 3° Place
+      setTabValue(4)
+    else if (today.isSame(moment('2022-12-18'))) // Final
+      setTabValue(5)
+  }
+
   function groupBy(array, key) {
     return array
       .reduce((hash, obj) => {
@@ -111,7 +126,8 @@ function Calendar() {
         <Tab label="Oitavas" {...a11yProps(1)} />
         <Tab label="Quartas" {...a11yProps(2)} />
         <Tab label="Semi" {...a11yProps(3)} />
-        <Tab label="Final" {...a11yProps(4)} />
+        <Tab label="3° Lugar" {...a11yProps(4)} />
+        <Tab label="Final" {...a11yProps(5)} />
       </Tabs>
 
       <SwipeableViews
@@ -136,6 +152,10 @@ function Calendar() {
         </TabPanel>
 
         <TabPanel value={tabValue} index={4}>
+          3° Lugar
+        </TabPanel>
+
+        <TabPanel value={tabValue} index={5}>
           Final
         </TabPanel>
 
