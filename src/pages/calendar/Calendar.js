@@ -66,7 +66,6 @@ function Calendar() {
           calendar["Play-off for third place"] = groupBy(calendar["Play-off for third place"], "date")
           calendar["Final"] = groupBy(calendar["Final"], "date")
 
-          console.log(calendar)
           setCalendar(calendar)
         }
 
@@ -143,19 +142,19 @@ function Calendar() {
         </TabPanel>
 
         <TabPanel value={tabValue} index={2}>
-          Quartas
+          <TabStage stage={calendar["Quarter-final"]} />
         </TabPanel>
 
         <TabPanel value={tabValue} index={3}>
-          Semi
+          <TabStage stage={calendar["Semi-final"]} />
         </TabPanel>
 
         <TabPanel value={tabValue} index={4}>
-          3° Lugar
+          <TabStage stage={calendar["Play-off for third place"]} />
         </TabPanel>
 
         <TabPanel value={tabValue} index={5}>
-          Final
+          <TabStage stage={calendar["Final"]} />
         </TabPanel>
 
       </SwipeableViews>
