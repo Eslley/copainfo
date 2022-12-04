@@ -8,10 +8,9 @@ import TabPanel from "../../components/layout/tabs/TabPanel"
 import SwipeableViews from "react-swipeable-views"
 
 import findGroup from "../../providers/utils/groups"
-import FirstStage from "./FirstStage"
 import FabFilter from "./FabFilter"
 import ModalSelectDate from "./ModalSelectDate"
-import Eighths from "./Eighths"
+import TabStage from "./TabStage"
 
 function a11yProps(index) {
   return {
@@ -136,11 +135,11 @@ function Calendar() {
       >
 
         <TabPanel value={tabValue} index={0}>
-          <FirstStage firstStage={calendar["First stage"]} />
+          <TabStage stage={calendar["First stage"]} setTabIndex={true} />
         </TabPanel>
 
         <TabPanel value={tabValue} index={1}>
-          <Eighths eighths={calendar["Round of 16"]} />
+          <TabStage stage={calendar["Round of 16"]} />
         </TabPanel>
 
         <TabPanel value={tabValue} index={2}>
